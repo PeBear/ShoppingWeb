@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="entity.Products" table="PRODUCTS" catalog="JAVA4" optimistic-lock="version">
+        <id name="masp" type="string">
+            <column name="MASP" length="10" />
+            <generator class="assigned" />
+        </id>
+        <property name="tensp" type="string">
+            <column name="TENSP" length="50" />
+        </property>
+        <property name="gia" type="java.lang.Integer">
+            <column name="GIA" />
+        </property>
+    </class>
+</hibernate-mapping>

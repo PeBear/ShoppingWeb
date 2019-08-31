@@ -1,0 +1,16 @@
+.container-product{
+    margin: 0 auto;
+    background-color: pink;
+    height: min-content;
+    width: 85%;
+}
+.container-img img, .container-img{
+    float: left;
+    padding: 10px;
+    height: 420px;
+    width: 360px;
+}
+.product-detail{
+    float: left;
+    padding: 20px;
+}

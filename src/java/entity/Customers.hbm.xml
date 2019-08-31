@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="JAVA4" name="entity.Customers" optimistic-lock="version" table="CUSTOMERS">
+        <id name="code" type="java.lang.Integer">
+            <column name="CODE"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="hoten" type="string">
+            <column length="50" name="HOTEN"/>
+        </property>
+        <property name="sdt" type="string">
+            <column length="10" name="SDT"/>
+        </property>
+        <property name="diachi" type="string">
+            <column length="50" name="DIACHI"/>
+        </property>
+        <property name="email" type="string">
+            <column length="50" name="EMAIL"/>
+        </property>
+        <property name="username" type="string">
+            <column length="20" name="USERNAME"/>
+        </property>
+        <property name="password" type="string">
+            <column length="50" name="PASSWORD"/>
+        </property>
+        <property name="role" type="string">
+            <column length="5" name="ROLE"/>
+        </property>
+    </class>
+</hibernate-mapping>
