@@ -138,7 +138,8 @@
         <aside>
         </aside>
         <footer>
-
+            xPeter - web shopping - copyright by xPeter
+            contact: 0902284213 - minhthang3792@gmail.com
         </footer>
         <script>
             $("#chatting").click(function() {

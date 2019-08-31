@@ -1,7 +1,7 @@
 .container-product{
     margin: 0 auto;
-    background-color: pink;
-    height: min-content;
+    background-color: white;
+    min-height: 500px;
     width: 85%;
 }
 .container-img img, .container-img{
@@ -13,4 +13,41 @@
 .product-detail{
     float: left;
     padding: 20px;
+}
+
+.product-detail p{
+    font-size: 15px;
+}
+.product-name, .product-price{
+    font-size: 25px;
+}
+.product-price{
+    color: red;
+}
+.product-code{
+    font-size: 20px;
+    font-weight: bold;
+}
+.button-MUAHANG{
+    cursor: pointer;
+    border: 1px solid red;
+    border-radius: 5px;
+    background-color: red;
+    color: white;
+    line-height: 40px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 1em;
+}
+
+.button-GIOHANG{
+    cursor: pointer;
+    border: 1px solid red;
+    border-radius: 5px;
+    background-color: white;
+    color: red;
+    line-height: 40px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 1em;
 }

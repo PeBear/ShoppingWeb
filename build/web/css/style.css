@@ -1,8 +1,8 @@
 body {
     padding: 0px;
     margin: 0px;
+    background-color: rgb(240, 240, 240);
 }
-
 a {
     text-decoration: none;
 }
@@ -312,6 +312,7 @@ article .big-box {
 }
 
 article .box {
+cursor: pointer;
     width: 20%;
     height: 250px;
     float: left;
@@ -333,4 +334,11 @@ article .box:hover {
 
 article .sanpham .price {
     color: #d35400;
+}
+
+footer{
+    clear: both;
+    margin-top: 15px;
+    text-align: center;
+    background-color: bisque;
 }

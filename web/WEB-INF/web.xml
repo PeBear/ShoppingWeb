@@ -32,6 +32,15 @@
         <url-pattern>/CartController</url-pattern>
     </servlet-mapping>
     
+        <servlet>
+        <servlet-name>ShowProductController</servlet-name>
+        <servlet-class>controller.ShowProductController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowProductController</servlet-name>
+        <url-pattern>/ShowProductController</url-pattern>
+    </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30

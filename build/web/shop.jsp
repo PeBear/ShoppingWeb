@@ -7,15 +7,16 @@
     <%
         List<Products> list = ProductDAO.getListProducts("");
         for (Products x : list) {
-            out.print("<div class=\"box\">"
+            out.print("<form id=\"hello\" action=\"ShowProductController\" method=\"post\" style=\"width: 100%;\">"
+                    + "<div class=\"box\" onclick=\"javascript:this.parentNode.submit()\">"
                     + "<div class=\"sanpham\">"
-                    + "<a href=\"#\" onclick=\"$('#myIframe').toggle()\">"
                     + "<img src=\"images/iphonexs.jpeg\">"
-                    + "<p>"+x.getTensp()+"</p>"
-                    + "<h3 class=\"price\">"+x.getGia()+" đ</h3>"
-                    + "</a>"
+                    + "<p>" + x.getTensp() + "</p>"
+                    + "<h3 class=\"price\">" + x.getGia() + " đ</h3>"
                     + "</div>"
-                    + "</div>");
+                    + "<input type=\"hidden\" name=\"txtCode\" value='" + x.getMasp() + "'>"
+                    + "</div>"
+                    + "</form>");
         }
     %>
 </div>
