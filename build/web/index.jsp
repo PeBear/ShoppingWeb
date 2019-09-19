@@ -17,60 +17,6 @@
     </head>
 
     <body onload="showAutoSlide('autoImg_fairy')">
-        <!-- login form -->
-        <div id="login" class="loginForm" style="display:none">
-            <form class="animate" method="post" action="LoginController">
-                <div class="form-content" style="padding:5px">
-                    <div class="form-group">
-                        <label><b>Username</b></label>
-                        <input type="text" name="txtUsername" placeholder="Enter Username" tabindex="1" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label><b>Password</b></label>
-                        <input type="password" name="txtPassword" placeholder="Enter Password" tabindex="2" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" tabindex="3" class="form-button">Login</button>
-                    </div>
-                    <div class="form-group">
-                        <label><input type="checkbox" name="remember">Remember me</label>
-                    </div>
-                </div>
-                <div class="form-footer">
-                    <button type="button" onclick="document.getElementById('login').style.display='none'">Cancel</button>
-                    <a href="#">Forgot password?</a>
-                </div>
-            </form>
-        </div>
-
-        <!-- register form -->
-        <div id="register" class="loginForm" style="display:none">
-            <form action="RegisterController" class="animate" method="post" onsubmit="return validateForm()">
-                <div class="form-content" style="padding:5px">
-                    <div class="form-group">
-                        <label><b>Username</b></label>
-                        <input type="text" name="txtUsername" placeholder="Enter Username" tabindex="1" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label><b>Password</b></label>
-                        <input type="password" name="txtPassword" placeholder="Enter Password" tabindex="2" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label><b>Email</b></label>
-                        <input type="text" name="txtEmail" placeholder="Enter your email" tabindex="3" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label><b>Re-Email</b></label>
-                        <input type="text" name="txtReEmail" placeholder="Re-enter your email" tabindex="4" class="form-control">
-                    </div>
-                    <div id="errorRegister" style="color: red; font-weight: bold"></div>
-                </div>
-                <div class="form-footer">
-                    <button type="button" onclick="document.getElementById('register').style.display='none'">Cancel</button>
-                    <button type="submit">Register</button>
-                </div>
-            </form>
-        </div>
         <div>
             <div id="clock"></div>
         </div>
@@ -85,8 +31,8 @@
             <div class="bg-cover">
                 <div class="login">
                     <ul>
-                        <li><a onclick="getModal('login')">LOGIN</a></li>
-                        <li><a onclick="getModal('register')">REGISTER</a></li>
+                        <li><a href="login.jsp">LOGIN</a></li>
+                        <li><a href="reg.jsp">REGISTER</a></li>
                     </ul>
                 </div>
                 <div class="logo">

@@ -8,6 +8,6 @@
     <body>
         <h1>Hello ${sessionScope.User}</h1>
         <a href="customers.jsp">Xem danh sach thanh vien</a>
-        <a href="products.jsp">Xem danh sach san pham</a>
+        <a href="product.jsp">Xem danh sach san pham</a>
     </body>
 </html>
