@@ -31,12 +31,13 @@ public class CartController extends HttpServlet {
                 }
                 String tensp = req.getParameter("txtTensp");
                 String masp = req.getParameter("txtMasp");
-                int gia = Integer.parseInt(req.getParameter("txtGia"));
+                String tempgia = req.getParameter("txtGia");
+                int gia = Integer.parseInt(tempgia);
                 Products sp = new Products(masp, tensp, gia);
                 ProductDTO product = new ProductDTO(sp);
                 cart.addProduct(product);
                 session.setAttribute("Cart", cart);
-                RequestDispatcher rd = req.getRequestDispatcher("shop.jsp");
+                RequestDispatcher rd = req.getRequestDispatcher("productDetail.jsp");
                 rd.forward(req, resp);
             } else if (action.equals("btnRemove")) {
                 String[] rmv = req.getParameterValues("chkRemove");
@@ -60,4 +61,9 @@ public class CartController extends HttpServlet {
         }
     }
 
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doPost(req, resp);
+    }
+    
 }

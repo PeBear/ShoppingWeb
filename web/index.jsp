@@ -36,7 +36,7 @@
                     </ul>
                 </div>
                 <div class="logo">
-                    <a href="index.html">xPeter</a>
+                    <a href="index.jsp">xPeter</a>
                 </div>
                 <div class="logo-nav">
                     <ul>
@@ -56,7 +56,7 @@
                         </li>
                         <li><a href="">ABOUT</a></li>
                         <li><a href="">CONTACT</a></li>
-                        <li><a href="shop.jsp">SHOP</a></li>
+                        <li><a href="cart.jsp">SHOP</a></li>
                     </ul>
                 </div>
                 <div class="container-slide">

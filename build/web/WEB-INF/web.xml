@@ -32,7 +32,7 @@
         <url-pattern>/CartController</url-pattern>
     </servlet-mapping>
     
-        <servlet>
+    <servlet>
         <servlet-name>ShowProductController</servlet-name>
         <servlet-class>controller.ShowProductController</servlet-class>
     </servlet>

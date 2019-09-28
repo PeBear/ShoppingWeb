@@ -3,40 +3,64 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Shopping cart</title>
+        <title>Shopping Cart</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="assets/css/custom.css"/>		
     </head>
+
     <body>
-        <h1>Your cart!</h1>
         <c:set var="cart" value="${sessionScope.Cart}" />
-        <c:if test="${not empty cart}">
-            <table border="1">
-                <tr>
-                    <th>STT</th>
-                    <th>Masp</th>
-                    <th>Tensp</th>
-                    <th>Soluong</th>
-                    <th>Dongia</th>
-                    <th>Xoa</th>
-                </tr>
-                <form action="CartController" method="post">
-                    <c:set var="count" value="0"/>
+        <div class="container-fluid breadcrumbBox text-center">
+            <ol class="breadcrumb">
+                <li><a href="#">Review</a></li>
+                <li class="active"><a href="#">Order</a></li>
+                <li><a href="#">Payment</a></li>
+            </ol>
+        </div>
+
+        <div class="container text-center">
+
+            <div class="col-md-7 col-sm-12 text-left">
+                <ul>
+                    <li class="row list-inline columnCaptions">
+                        <span>QTY</span>
+                        <span>ITEM</span>
+                        <span>Price</span>
+                    </li>
                     <c:forEach var="rows" items="${cart}">
-                        <c:set var="count" value="${count + 1}" />
-                        <tr>
-                            <td>${count}</td>
-                            <td>${rows.value.sanpham.masp}</td>
-                            <td>${rows.value.sanpham.tensp}</td>
-                            <td>${rows.value.soluong}</td>
-                            <td>${rows.value.sanpham.gia}</td>
-                            <td><input type="checkbox" name="chkRemove" value="${rows.value.sanpham.masp}"> </td>
-                        </tr>
+                        <li class="row">
+                            <span class="quantity">${rows.value.soluong}</span>
+                            <span class="itemName">${rows.value.sanpham.tensp}</span>
+                            <span class="popbtn"><a class="arrow"></a></span>
+                            <span class="price">${rows.value.sanpham.gia}</span>
+                        </li>
                     </c:forEach>
-                        <tr>
-                            <td> <button type="submit" name="action" value="btnRemove">Xoa</button> </td>
-                        </tr>
-                </form>
-            </table>
-        </c:if>
+
+                    <li class="row totals">
+                        <span class="itemName">Total:</span>
+                        <span class="price">$1694.43</span>
+                        <span class="order"> <a class="text-center">ORDER</a></span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- The popover content -->
+
+        <div id="popover" style="display: none">
+            <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a href="#"><span class="glyphicon glyphicon-remove"></span></a>
+        </div>
+
+        <!-- JavaScript includes -->
+
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script> 
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/customjs.js"></script>
+
     </body>
 </html>
