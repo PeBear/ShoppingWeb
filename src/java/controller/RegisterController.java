@@ -13,18 +13,18 @@ public class RegisterController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
+        resp.setContentType("text/html;charset=UTF-8");
         PrintWriter printWriter = resp.getWriter();
 
         String username = req.getParameter("txtUsername").trim();
         String password = req.getParameter("txtPassword").trim();
         String email = req.getParameter("txtEmail").trim();
-        Customers cus = new Customers(username, password, email, "guest");
-        if (CustomerDAO.insertCustomer(cus)) {
-            printWriter.println("<h1>Register success!</h1>");
-        } else {
-            printWriter.println("<h1>Register failed!</h1>");
-        }
+//        Customers cus = new Customers(username, password, email, "guest");
+//        if (CustomerDAO.insertCustomer(cus)) {
+//            printWriter.println("<h1>Register success!</h1>");
+//        } else {
+//            printWriter.println("<h1>Register failed!</h1>");
+//        }
 
     }
 

@@ -1,6 +1,9 @@
 package entity;
 
-public class Customers {
+import java.io.Serializable;
+
+public class Customers implements Serializable {
+
     private int code;
     private String hoten;
     private String sdt;
@@ -9,18 +12,22 @@ public class Customers {
     private String username;
     private String password;
     private String role;
-    
-    public Customers(){
-        
+
+    public Customers() {
+
     }
-    
-    public Customers(String username, String password, String email, String role){
+
+    public Customers( String hoten, String sdt, String email, String diachi, String username, String password, String role) {
+        this.hoten = hoten;
+        this.sdt = sdt;
+        this.email = email;
+        this.diachi = diachi;
         this.username = username;
         this.password = password;
         this.role = role;
     }
-    
-    public Customers(int code, String hoten, String sdt, String email, String diachi, String username, String password, String role){
+
+    public Customers(int code, String hoten, String sdt, String email, String diachi, String username, String password, String role) {
         this.code = code;
         this.hoten = hoten;
         this.sdt = sdt;

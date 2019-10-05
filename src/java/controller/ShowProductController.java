@@ -12,6 +12,7 @@ public class ShowProductController extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html;charset=UTF-8");
         try {
             String code = req.getParameter("txtCode");
             HttpSession session = req.getSession(true);
