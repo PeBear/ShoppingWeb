@@ -80,8 +80,7 @@ public class CustomerDAO {
             return false;
         }
 
-        //CurrentSession auto open - close session
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
 
         try {
             session.beginTransaction();
@@ -92,14 +91,15 @@ public class CustomerDAO {
             session.getTransaction().rollback();
             e.printStackTrace();
             return false;
+        } finally {
+            session.close();
         }
     }
 
     public static boolean deleteCustomer(int code) {
         Customers cus = getInfoCustomer(code);
 
-        //CurrentSession auto open - close session
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             session.beginTransaction();
             session.delete(cus);
@@ -109,6 +109,8 @@ public class CustomerDAO {
             session.getTransaction().rollback();
             e.printStackTrace();
             return false;
+        } finally{
+            session.close();
         }
 
     }

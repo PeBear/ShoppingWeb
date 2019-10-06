@@ -3,14 +3,16 @@ package cart;
 import entity.Products;
 
 public class ProductDTO {
+
     private Products sanpham;
     private int soluong;
-    
-    public ProductDTO(){
-        
+    private int tonggia;
+
+    public ProductDTO() {
+
     }
-    
-    public ProductDTO(Products sanpham){
+
+    public ProductDTO(Products sanpham) {
         this.sanpham = sanpham;
         this.soluong = 1;
     }
@@ -30,6 +32,13 @@ public class ProductDTO {
     public void setSoluong(int soluong) {
         this.soluong = soluong;
     }
-    
-    
+
+    public int getTonggia() {
+        return tonggia;
+    }
+
+    public void setTonggia(int tonggia) {
+        this.tonggia = tonggia;
+    }
+
 }

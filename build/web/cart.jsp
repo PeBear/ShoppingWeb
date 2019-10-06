@@ -38,10 +38,9 @@
                             <span class="price">${rows.value.sanpham.gia}</span>
                         </li>
                     </c:forEach>
-
                     <li class="row totals">
                         <span class="itemName">Total:</span>
-                        <span class="price">$1694.43</span>
+                        <span class="price">${sum}</span>
                         <span class="order"> <a class="text-center">ORDER</a></span>
                     </li>
                 </ul>

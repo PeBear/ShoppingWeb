@@ -129,8 +129,8 @@
         <div class="limiter">
             <div class="vertical-menu">
                 <a href="#" class="active">Home</a>
-                <a href="#">Link 1</a>
-                <a href="#">Link 2</a>
+                <a href="CustomerController">Quản lý khách hàng</a>
+                <a href="ProductController">Quản lý sản phẩm</a>
                 <a href="#">Link 3</a>
                 <a href="#">Link 4</a>
             </div> 
@@ -145,6 +145,8 @@
                                     <th class="column3">Điện Thoại</th>
                                     <th class="column4">Địa Chỉ</th>
                                     <th class="column5">Email</th>
+                                    <th class="column6">Username</th>
+                                    <th class="column6">Password</th>
                                     <th class="column6">Vai Trò</th>
                                 </tr>
                             </thead>
@@ -160,11 +162,13 @@
                                             <td class="column3">${rows.sdt}</td>
                                             <td class="column4">${rows.diachi}</td>
                                             <td class="column5">${rows.email}</td>
+                                            <td class="column6">${rows.username}</td>
+                                            <td class="column6">${rows.password}</td>
                                             <td class="column6">${rows.role}</td>
                                     <form action="CustomerController" method="post">
                                         <td><button onclick="getModal('updateForm')">Cập Nhật</button></td>
                                     </form>
-                            
+
                                     <form action="CustomerController" method="post">
                                         <td>
                                             <input type="hidden" name="txtCode" value="${rows.code}">

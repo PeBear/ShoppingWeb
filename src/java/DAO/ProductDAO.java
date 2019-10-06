@@ -65,7 +65,7 @@ public class ProductDAO {
             return false;
         }
         //CurrentSession auto open - close session
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
 
         try {
             session.beginTransaction();
@@ -76,7 +76,10 @@ public class ProductDAO {
             session.getTransaction().rollback();
             e.printStackTrace();
             return false;
+        } finally {
+            session.close();
         }
+
     }
 
     public static boolean deleteProduct(String masp) {
@@ -85,7 +88,7 @@ public class ProductDAO {
             return false;
         }
         //CurrentSession auto open - close session
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
 
         try {
             session.beginTransaction();
@@ -96,6 +99,8 @@ public class ProductDAO {
             session.getTransaction().rollback();
             e.printStackTrace();
             return false;
+        } finally {
+            session.close();
         }
     }
 

@@ -40,6 +40,9 @@ public class CustomerController extends HttpServlet {
             HttpSession session = request.getSession(true);
             list = CustomerDAO.getListCustomers("");
             session.setAttribute("ListCustomer", list);
+            for (Customers x : list) {
+                System.out.println(x.getUsername());
+            }
             RequestDispatcher rd = request.getRequestDispatcher("customers.jsp");
             rd.forward(request, response);
         } else {
@@ -52,7 +55,7 @@ public class CustomerController extends HttpServlet {
 
     }
 
-    private void themKhachHang(HttpServletRequest request, HttpServletResponse response) {
+    private void themKhachHang(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("txtUsername");
         String hoten = request.getParameter("txtFullname");
         String sdt = request.getParameter("txtPhoneNum");
@@ -60,22 +63,23 @@ public class CustomerController extends HttpServlet {
         String email = request.getParameter("txtEmail");
         String password = request.getParameter("txtPassword");
         String role = request.getParameter("rdoVaitro");
-        System.out.println(username);
-        System.out.println(hoten);
-        System.out.println(sdt);
-        System.out.println(diachi);
-        System.out.println(email);
-        System.out.println(password);
-        System.out.println(role);
         Customers cus = new Customers(hoten, sdt, email, diachi, username, password, role);
-//        CustomerDAO.insertCustomer(cus);
+        if (CustomerDAO.insertCustomer(cus)) {
+            HttpSession session = request.getSession(true);
+            list = CustomerDAO.getListCustomers("");
+            session.setAttribute("ListCustomer", list);
+            RequestDispatcher rd = request.getRequestDispatcher("customers.jsp");
+            rd.forward(request, response);
+        }
     }
 
     private void xoaKhachHang(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String code = request.getParameter("txtCode");
         int makh = Integer.parseInt(code);
         if (CustomerDAO.deleteCustomer(makh)) {
+            HttpSession session = request.getSession(true);
             list = CustomerDAO.getListCustomers("");
+            session.setAttribute("ListCustomer", list);
             RequestDispatcher rd = request.getRequestDispatcher("customers.jsp");
             rd.forward(request, response);
         } else {
