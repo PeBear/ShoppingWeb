@@ -1,5 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<c:if test="${empty sessionScope.User}">
+    <c:redirect url="login.jsp"/>
+</c:if>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -57,41 +61,6 @@
         </style>
     </head>
     <body>
-
-        <div id="updateForm" class="containerUpdate" style="display: none">
-            <div class="signup-content">
-                <form method="POST" id="signup-form" class="signup-form" action="CustomerController">
-                    <h2 class="form-title">CẬP NHẬT KHÁCH HÀNG</h2>
-                    <div class="form-group">
-                        Username: <input type="text" class="form-input" name="txtUsername" id="name" placeholder="Username"/>
-                    </div>
-                    <div class="form-group">
-                        Họ tên: <input type="text" class="form-input" name="txtFullname" id="name" placeholder="Nhập họ tên"/>
-                    </div>
-                    <div class="form-group">
-                        Email: <input type="email" class="form-input" name="txtEmail" id="email" placeholder="Nhập Email"/>
-                    </div>
-                    <div class="form-group">
-                        SĐT: <input type="text" class="form-input" name="txtPhoneNum" id="email" placeholder="Nhập số điện thoại"/>
-                    </div>
-                    <div class="form-group">
-                        Mật khẩu: <input type="text" class="form-input" name="txtPassword" id="password" placeholder="Nhập mật khẩu"/>
-                        <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
-                    </div>
-                    <div class="form-group">
-                        Re-Mật Khẩu: <input type="password" class="form-input" name="txtRepassword" id="re_password" placeholder="Nhập lại mật khẩu"/>
-                    </div>
-                    <div class="form-group">
-                        Vai trò: <label><input type="radio" name="rdoVaitro" id="agree-term" class="agree-term" /> Trưởng Phòng</label>
-                        <label><input type="radio" name="rdoVaitro" id="agree-term" class="agree-term" /> Nhân Viên</label>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" name="action" id="submit" class="form-submit" value="btnUpdate">Cập Nhật</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
         <div id="addForm" class="containerUpdate" style="display: none">
             <div class="signup-content">
                 <form method="POST" id="signup-form" class="signup-form" action="CustomerController">
@@ -128,11 +97,10 @@
 
         <div class="limiter">
             <div class="vertical-menu">
-                <a href="#" class="active">Home</a>
+                <a>${sessionScope.User}</a>
+                <a href="index.jsp" class="active">Home</a>
                 <a href="CustomerController">Quản lý khách hàng</a>
                 <a href="ProductController">Quản lý sản phẩm</a>
-                <a href="#">Link 3</a>
-                <a href="#">Link 4</a>
             </div> 
             <div class="container-table100">
                 <div class="wrap-table100">
@@ -166,7 +134,8 @@
                                             <td class="column6">${rows.password}</td>
                                             <td class="column6">${rows.role}</td>
                                     <form action="CustomerController" method="post">
-                                        <td><button onclick="getModal('updateForm')">Cập Nhật</button></td>
+                                        <input type="hidden" name="txtCode" value="${rows.code}" />
+                                        <td><button type="submit" name="action" value="btnInfo">Cập Nhật</button></td>
                                     </form>
 
                                     <form action="CustomerController" method="post">

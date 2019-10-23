@@ -11,8 +11,11 @@
         <property name="tensp" type="string">
             <column name="TENSP" length="50" />
         </property>
-        <property name="gia" type="java.lang.Integer">
+        <property name="gia" type="java.lang.Double">
             <column name="GIA" />
+        </property>
+        <property name="hinh" type="string">
+            <column name="HINH" length="50"/>
         </property>
     </class>
 </hibernate-mapping>

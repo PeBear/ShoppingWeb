@@ -1,8 +1,9 @@
 package cart;
 
 import entity.Products;
+import java.io.Serializable;
 
-public class ProductDTO {
+public class ProductDTO implements Serializable{
 
     private Products sanpham;
     private int soluong;

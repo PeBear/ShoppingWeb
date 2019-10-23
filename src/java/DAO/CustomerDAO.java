@@ -12,12 +12,13 @@ public class CustomerDAO {
         List<Customers> list = null;
 
         //CurrentSession auto open - close session
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
 
         session.beginTransaction();
         String sql = "from Customers where username = '" + username + "' and password = '" + password + "'";
         Query query = session.createQuery(sql);
         list = query.list();
+        session.close();
         if (list.size() > 0) {
             return true;
         }

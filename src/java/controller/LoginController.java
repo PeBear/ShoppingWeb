@@ -3,11 +3,11 @@ package controller;
 import DAO.CustomerDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class LoginController extends HttpServlet {
 
@@ -19,9 +19,10 @@ public class LoginController extends HttpServlet {
         String username = req.getParameter("txtUsername");
         String password = req.getParameter("txtPassword");
         if (CustomerDAO.checkLogin(username, password)) {
+            HttpSession session = req.getSession(true);
+            session.setAttribute("User", username);
+//            session.setMaxInactiveInterval(10);
             resp.sendRedirect("CustomerController");
-//            RequestDispatcher rd = req.getRequestDispatcher("/CustomerController");
-//            rd.forward(req, resp);
         } else {
             printWriter.println("<h1>Login failed! Username or password invalid!</h1>");
         }

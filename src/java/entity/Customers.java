@@ -17,7 +17,7 @@ public class Customers implements Serializable {
 
     }
 
-    public Customers( String hoten, String sdt, String email, String diachi, String username, String password, String role) {
+    public Customers(String hoten, String sdt, String email, String diachi, String username, String password, String role) {
         this.hoten = hoten;
         this.sdt = sdt;
         this.email = email;

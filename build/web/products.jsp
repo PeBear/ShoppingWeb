@@ -1,6 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<c:if test="${empty sessionScope.User}">
+    <c:redirect url="login.jsp"/>
+</c:if>
 <html lang="en">
     <head>
         <title>Table V01</title>
@@ -58,27 +61,13 @@
     </head>
     <body>
 
-        <div id="updateForm" class="containerUpdate" style="display: none">
-            <div class="signup-content">
-                <form method="POST" id="signup-form" class="signup-form" action="ProductController">
-                    <h2 class="form-title">CẬP NHẬT SẢN PHẨM</h2>
-                    <div class="form-group">
-                        Tên sản phẩm: <input type="text" class="form-input" name="txtName" id="name" placeholder="Nhập tên sản phẩn"/>
-                    </div>
-                    <div class="form-group">
-                        Giá: <input type="text" class="form-input" name="txtPrice" id="name" placeholder="Nhập giá"/>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" name="action" id="submit" class="form-submit" value="btnUpdate">Cập Nhật</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
         <div id="addForm" class="containerUpdate" style="display: none">
             <div class="signup-content">
                 <form method="POST" id="signup-form" class="signup-form" action="ProductController">
                     <h2 class="form-title">THÊM SẢN PHẨM</h2>
+                    <div class="form-group">
+                        Mã sản phẩm: <input type="text" class="form-input" name="txtCode" id="name" value="SP" placeholder="Nhập mã sản phẩn"/>
+                    </div>
                     <div class="form-group">
                         Tên sản phẩm: <input type="text" class="form-input" name="txtName" id="name" placeholder="Nhập tên sản phẩn"/>
                     </div>
@@ -94,11 +83,10 @@
 
         <div class="limiter">
             <div class="vertical-menu">
-                <a href="#" class="active">Home</a>
+                <a>${sessionScope.User}</a>
+                <a href="index.jsp" class="active">Home</a>
                 <a href="CustomerController">Quản lý khách hàng</a>
                 <a href="ProductController">Quản lý sản phẩm</a>
-                <a href="#">Link 3</a>
-                <a href="#">Link 4</a>
             </div> 
             <div class="container-table100">
                 <div class="wrap-table100">
@@ -107,9 +95,11 @@
                             <thead>
                                 <tr class="table100-head">
                                     <th class="column1">STT</th>
+                                    <th class="column2"></th>
                                     <th class="column2">Mã SP</th>
                                     <th class="column3">Tên SP</th>
                                     <th class="column4">Giá</th>
+                                    <th colspan="3" class="column5" style="text-align: center">Hành động</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -120,13 +110,18 @@
                                         <c:set var="count" value="${count+1}"/>
                                         <tr>
                                             <td class="column1">${count}</td>
+                                            <td class="column1"><img src="images/${rows.hinh}" width="100" ></td>
                                             <td class="column2">${rows.masp}</td>
                                             <td class="column3">${rows.tensp}</td>
                                             <td class="column4">${rows.gia}</td>
                                     <form action="ProductController" method="post">
-                                        <td><button onclick="getModal('updateForm')">Cập Nhật</button></td>
+                                        <input type="hidden" name="txtCode" value="${rows.masp}" />
+                                        <td><button type="submit" name="action" value="btnInfo">Cập Nhật</button></td>
                                     </form>
-
+                            <form action="UploadFileServlet">
+                                        <input type="hidden" name="txtCode" value="${rows.masp}" />
+                                        <td><button type="submit">Thêm Ảnh</button></td>
+                                    </form>
                                     <form action="ProductController" method="post">
                                         <td>
                                             <input type="hidden" name="txtCode" value="${rows.masp}">
@@ -143,7 +138,7 @@
                         </table>
                     </div>
                     <div>
-                        <button id="button-add" onclick="getModal('addForm')">Thêm Khách Hàng</button>
+                        <button id="button-add" onclick="getModal('addForm')">Thêm Sản Phẩm</button>
                     </div>
 
                 </div>

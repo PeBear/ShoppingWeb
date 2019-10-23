@@ -32,10 +32,14 @@ public class CartController extends HttpServlet {
                 String tensp = req.getParameter("txtTensp");
                 String masp = req.getParameter("txtMasp");
                 String tempgia = req.getParameter("txtGia");
-                int gia = Integer.parseInt(tempgia);
-                Products sp = new Products(masp, tensp, gia);
+                double gia = Double.parseDouble(tempgia);
+                String hinh = req.getParameter("txtHinh");
+                Products sp = new Products(masp, tensp, gia, hinh);
+                System.out.println("gia: " + gia);
+                System.out.println("xuly: " + sp.getGiaDaXuLy());
                 ProductDTO product = new ProductDTO(sp);
                 cart.addProduct(product);
+                session.setAttribute("CartTotal", String.format("%,.2f", cart.getTongGia()));
                 session.setAttribute("Cart", cart);
                 RequestDispatcher rd = req.getRequestDispatcher("productDetail.jsp");
                 rd.forward(req, resp);

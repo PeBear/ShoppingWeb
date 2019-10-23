@@ -10,7 +10,6 @@ public class ShoppingCart extends HashMap {
 
     public void addProduct(ProductDTO sp) {
         String key = sp.getSanpham().getMasp();
-        int temp = 0;
         if (this.containsKey(key)) {
             int soLuongCu = ((ProductDTO) this.get(key)).getSoluong();
             ((ProductDTO) this.get(key)).setSoluong(soLuongCu + 1);
@@ -28,4 +27,11 @@ public class ShoppingCart extends HashMap {
         return false;
     }
 
+    public double getTongGia() {
+        double tonggia = 0;
+        for (Object x : this.values()) {
+            tonggia += ((ProductDTO) x).getSanpham().getGia() * ((ProductDTO) x).getSoluong();
+        }
+        return tonggia;
+    }
 }

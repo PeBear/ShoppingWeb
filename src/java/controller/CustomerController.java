@@ -20,42 +20,35 @@ public class CustomerController extends HttpServlet {
 
     List<Customers> list = null;
     PrintWriter printWriter = null;
+    String cusPage = "customers.jsp";
+    String infoPage = "infoCus.jsp";
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action");
-
-        if (action == null) {
-            HttpSession session = request.getSession(true);
-            list = CustomerDAO.getListCustomers("");
-            session.setAttribute("ListCustomer", list);
-            for (Customers x : list) {
-                System.out.println(x.getUsername());
-            }
-            RequestDispatcher rd = request.getRequestDispatcher("customers.jsp");
+        if (action.equals("btnThem")) {
+            this.themKhachHang(request, response);
+            RequestDispatcher rd = request.getRequestDispatcher(cusPage);
+            rd.forward(request, response);
+        } else if (action.equals("btnXoa")) {
+            this.xoaKhachHang(request, response);
+            RequestDispatcher rd = request.getRequestDispatcher(cusPage);
+            rd.forward(request, response);
+        } else if (action.equals("btnInfo")) {
+            this.getThongTinKhachHang(request, response);
+            RequestDispatcher rd = request.getRequestDispatcher(infoPage);
             rd.forward(request, response);
         } else {
-            if (action.equals("btnThem")) {
-                this.themKhachHang(request, response);
-            } else if (action.equals("btnXoa")) {
-                this.xoaKhachHang(request, response);
-            }
+            this.updateKhachHang(request, response);
+            RequestDispatcher rd = request.getRequestDispatcher(cusPage);
+            rd.forward(request, response);
         }
 
     }
 
-    private void themKhachHang(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void themKhachHang(HttpServletRequest request, HttpServletResponse response) {
         String username = request.getParameter("txtUsername");
         String hoten = request.getParameter("txtFullname");
         String sdt = request.getParameter("txtPhoneNum");
@@ -68,48 +61,60 @@ public class CustomerController extends HttpServlet {
             HttpSession session = request.getSession(true);
             list = CustomerDAO.getListCustomers("");
             session.setAttribute("ListCustomer", list);
-            RequestDispatcher rd = request.getRequestDispatcher("customers.jsp");
-            rd.forward(request, response);
         }
     }
 
-    private void xoaKhachHang(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void xoaKhachHang(HttpServletRequest request, HttpServletResponse response) {
         String code = request.getParameter("txtCode");
         int makh = Integer.parseInt(code);
         if (CustomerDAO.deleteCustomer(makh)) {
             HttpSession session = request.getSession(true);
             list = CustomerDAO.getListCustomers("");
             session.setAttribute("ListCustomer", list);
-            RequestDispatcher rd = request.getRequestDispatcher("customers.jsp");
-            rd.forward(request, response);
         } else {
             //printWriter.print("xoa not ok");
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    private void getThongTinKhachHang(HttpServletRequest request, HttpServletResponse response) {
+        String tempcode = request.getParameter("txtCode");
+        int code = Integer.parseInt(tempcode);
+        Customers cus = CustomerDAO.getInfoCustomer(code);
+        HttpSession session = request.getSession(true);
+        session.setAttribute("getInFoCustomer", cus);
+
+    }
+
+    private void updateKhachHang(HttpServletRequest request, HttpServletResponse response) {
+        String tempcode = request.getParameter("txtCode");
+        int code = Integer.parseInt(tempcode);
+        String username = request.getParameter("txtUsername");
+        String hoten = request.getParameter("txtFullname");
+        String sdt = request.getParameter("txtPhoneNum");
+        String diachi = request.getParameter("txtAddress");
+        String email = request.getParameter("txtEmail");
+        String password = request.getParameter("txtPassword");
+        String role = request.getParameter("rdoVaitro");
+        Customers cus = new Customers(code, hoten, sdt, email, diachi, username, password, role);
+        CustomerDAO.updateCustomer(cus);
+
+        HttpSession session = request.getSession(true);
+        list = CustomerDAO.getListCustomers("");
+        session.setAttribute("ListCustomer", list);
+
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        HttpSession session = request.getSession(true);
+        list = CustomerDAO.getListCustomers("");
+        session.setAttribute("ListCustomer", list);
+        response.sendRedirect(cusPage);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

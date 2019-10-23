@@ -9,7 +9,7 @@
         <title>Document</title>
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/jquery-ui.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
         <script src="js/jquery-3.4.1.min.js"></script>
         <script src="js/jquery-ui.js"></script>
         <script src="js/angular.min.js"></script>
@@ -54,9 +54,9 @@
                         <li>
                             <a href="" onmouseover="showChildMenu('child-menu')" onmouseout="hideChildMenu('child-menu')">HOME</a>
                         </li>
-                        <li><a href="">ABOUT</a></li>
-                        <li><a href="">CONTACT</a></li>
-                        <li><a href="cart.jsp">SHOP</a></li>
+                        <li><a href="customers.jsp">CUSTOMERS</a></li>
+                        <li><a href="products.jsp">PRODUCTS</a></li>
+                        <li><a href="cart.jsp">YOUR CART</a></li>
                     </ul>
                 </div>
                 <div class="container-slide">

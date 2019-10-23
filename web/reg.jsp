@@ -24,24 +24,40 @@
                     <form method="POST" id="signup-form" class="signup-form" action="RegisterController">
                         <h2 class="form-title">Create account</h2>
                         <div class="form-group">
+                            Username:
                             <input type="text" class="form-input" name="txtUsername" id="name" placeholder="Your Username"/>
                         </div>
                         <div class="form-group">
+                            Email:
                             <input type="email" class="form-input" name="txtEmail" id="email" placeholder="Your Email"/>
                         </div>
                         <div class="form-group">
+                            Full name:
+                            <input type="text" class="form-input" name="txtHoten" id="name" placeholder="Your Name"/>
+                        </div>
+                        <div class="form-group">
+                            Phone Number:
+                            <input type="text" class="form-input" name="txtSDT" id="name" placeholder="Your Phone num"/>
+                        </div>
+                        <div class="form-group">
+                            Address:
+                            <input type="text" class="form-input" name="txtDiaChi" id="name" placeholder="Your Address"/>
+                        </div>
+                        <div class="form-group">
+                            Password: 
                             <input type="text" class="form-input" name="txtPassword" id="password" placeholder="Password"/>
                             <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
                         </div>
                         <div class="form-group">
+                            Re-Password: 
                             <input type="password" class="form-input" name="txtRepassword" id="re_password" placeholder="Repeat your password"/>
                         </div>
-                        <div class="form-group">
+<!--                        <div class="form-group">
                             <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
                             <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
-                        </div>
+                        </div>-->
                         <div class="form-group">
-                            <input type="submit" name="submit" id="submit" class="form-submit" value="Sign up"/>
+                            <button type="submit" name="submit" id="submit" class="form-submit" value="btnReg">Sign up</button>
                         </div>
                     </form>
                     <p class="loginhere">

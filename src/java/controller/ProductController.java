@@ -3,7 +3,6 @@ package controller;
 import DAO.ProductDAO;
 import entity.Products;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,20 +17,36 @@ import javax.servlet.http.HttpSession;
  */
 public class ProductController extends HttpServlet {
 
+    List<Products> list;
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ProductController</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ProductController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        request.setCharacterEncoding("UTF-8");
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html;charset=UTF-8");
+        req.setCharacterEncoding("UTF-8");
+        String action = req.getParameter("action");
+        if (action.equals("btnThem")) {
+            this.addProduct(req, resp);
+            RequestDispatcher rd = req.getRequestDispatcher("products.jsp");
+            rd.forward(req, resp);
+        } else if (action.equals("btnXoa")) {
+            this.removeProduce(req, resp);
+            RequestDispatcher rd = req.getRequestDispatcher("products.jsp");
+            rd.forward(req, resp);
+        } else if (action.equals("btnInfo")) {
+            this.getInfoProduct(req, resp);
+            RequestDispatcher rd = req.getRequestDispatcher("infoProduct.jsp");
+            rd.forward(req, resp);
+        } else {
+            this.updateProduct(req, resp);
+            RequestDispatcher rd = req.getRequestDispatcher("products.jsp");
+            rd.forward(req, resp);
         }
     }
 
@@ -49,14 +64,10 @@ public class ProductController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        List<Products> list = ProductDAO.getListProducts("");
+        list = ProductDAO.getListProducts("");
         HttpSession session = request.getSession(true);
         session.setAttribute("ListProduct", list);
-        for (Products x : list){
-            System.out.println(x.getTensp());
-        }
-        RequestDispatcher rd = request.getRequestDispatcher("products.jsp");
-        rd.forward(request, response);
+        response.sendRedirect("products.jsp");
     }
 
     /**
@@ -69,4 +80,40 @@ public class ProductController extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    private void addProduct(HttpServletRequest req, HttpServletResponse resp) {
+        String masp = req.getParameter("txtCode");
+        String tensp = req.getParameter("txtName");
+        double gia = Double.parseDouble(req.getParameter("txtPrice"));
+        Products pd = new Products(masp, tensp, gia, null);
+        ProductDAO.insertProduct(pd);
+        list = ProductDAO.getListProducts("");
+        HttpSession session = req.getSession(true);
+        session.setAttribute("ListProduct", list);
+    }
+
+    private void removeProduce(HttpServletRequest req, HttpServletResponse resp) {
+        String masp = req.getParameter("txtCode");
+        ProductDAO.deleteProduct(masp);
+        list = ProductDAO.getListProducts("");
+        HttpSession session = req.getSession(true);
+        session.setAttribute("ListProduct", list);
+    }
+
+    private void updateProduct(HttpServletRequest req, HttpServletResponse resp) {
+        String masp = req.getParameter("txtCode");
+        String tensp = req.getParameter("txtName");
+        double gia = Double.parseDouble(req.getParameter("txtPrice"));
+        Products pd = new Products(masp, tensp, gia, null);
+        ProductDAO.updateProduct(pd);
+        list = ProductDAO.getListProducts("");
+        HttpSession session = req.getSession(true);
+        session.setAttribute("ListProduct", list);
+    }
+
+    private void getInfoProduct(HttpServletRequest req, HttpServletResponse resp) {
+        String masp = req.getParameter("txtCode");
+        Products pd = ProductDAO.getInfoProduct(masp);
+        HttpSession session = req.getSession(true);
+        session.setAttribute("getInfoProduct", pd);
+    }
 }
